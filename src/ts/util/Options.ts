@@ -83,6 +83,7 @@ export class Options {
             "italic",
             "strike",
             "link",
+            "file-link",
             "|",
             "list",
             "ordered-list",
@@ -242,6 +243,14 @@ export class Options {
                 prefix: "[",
                 suffix: "](https://)",
                 tipPosition: "n",
+            },
+            {
+                icom: '<svg><use xlink:href="#vditor-icon-emoji"></use></svg>',
+                name: "file-link",
+                prefix: "-[",
+                suffix: "]()",
+                tip: 'file-link',
+                tipPosition: "ne"
             },
             {
                 name: "|",
