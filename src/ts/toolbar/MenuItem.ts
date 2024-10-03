@@ -7,7 +7,7 @@ import {toolbarEvent} from "../wysiwyg/toolbarEvent";
 
 export class MenuItem {
     public element: HTMLElement;
- // 一般情况下生成div或者button元素，其子元素为icon
+ // 一般情况下生成div或者button元素
     constructor(vditor: IVditor, menuItem: IMenuItem) {
         this.element = document.createElement("div");
         if (menuItem.className) {
