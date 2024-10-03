@@ -6,11 +6,12 @@
   "author": "",
   "jsdelivr": "dist/index.min.js",
   "main": "dist/index.js",
-    "files": [
+  "files": [
     "dist/*"
   ],
   "dependencies": {
-    "diff-match-patch": "^1.0.5"
+    "diff-match-patch": "^1.0.5",
+    "ficus-editor": "file:"
   },
   "types": "dist/index.d.ts",
   "devDependencies": {
