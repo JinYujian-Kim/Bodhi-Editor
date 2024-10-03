@@ -31,7 +31,7 @@ export abstract class Constants {
     "solidity", "yul"
   ];
   // public static readonly CDN = `https://unpkg.com/vditor@${VDITOR_VERSION}`;
-  public static readonly CDN = `https://unpkg.com/ficus-editor@${FICUS_EDITOR_VERSION}`;
+  public static readonly CDN = `https://unpkg.com/bodhi-editor@${Bodhi_EDITOR_VERSION}`;
   public static readonly MARKDOWN_OPTIONS = {
     autoSpace: false,
     gfmAutoLink: true,
