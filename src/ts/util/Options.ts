@@ -84,6 +84,7 @@ export class Options {
             "strike",
             "link",
             "file-link",
+            "img-link",
             "|",
             "list",
             "ordered-list",
@@ -126,7 +127,7 @@ export class Options {
             "highlight",
             "sup-script",
             "sub-script",
-            "underline"
+            "underline",
         ],
         toolbarConfig: {
             hide: false,
@@ -244,14 +245,6 @@ export class Options {
                 prefix: "[",
                 suffix: "](https://)",
                 tipPosition: "n",
-            },
-            {
-                icom: '<svg><use xlink:href="#vditor-icon-link"></use></svg>',
-                name: "file-link",
-                prefix: "-[",
-                suffix: "]()",
-                tip: 'file-link',
-                tipPosition: "ne"
             },
             {
                 name: "|",
@@ -487,7 +480,23 @@ export class Options {
                 name: "underline",
                 prefix: "<u>",
                 suffix: "</u>",
-                tip: "inderline",
+                tip: "underline",
+                tipPosition: "ne"
+            },
+            {
+                icom: '<svg><use xlink:href="#vditor-icon-link"></use></svg>',
+                name: "file-link",
+                prefix: "-[",
+                suffix: "]()",
+                tip: 'file-link',
+                tipPosition: "ne"
+            },
+            {
+                icom: '<svg><use xlink:href="#vditor-icon-link"></use></svg>',
+                name: "img-link",
+                prefix: "![",
+                suffix: "]()",
+                tip: 'img-link',
                 tipPosition: "ne"
             }
         ];

@@ -5,7 +5,7 @@ import {hasClosestBlock, hasClosestByMatchTag} from "../util/hasClosest";
 import {processCodeRender} from "../util/processCode";
 import {getEditorRange, setRangeByWbr, setSelectionFocus} from "../util/selection";
 import {afterRenderEvent} from "./afterRenderEvent";
-import {genAPopover, highlightToolbarWYSIWYG} from "./highlightToolbarWYSIWYG";
+import {genAPopover, highlightToolbarWYSIWYG, genImagePopover} from "./highlightToolbarWYSIWYG";
 import {getNextHTML, getPreviousHTML, splitElement} from "./inlineTag";
 import {inputEvent} from "../../ts/sv/inputEvent";
 import {input} from "../../ts/wysiwyg/input";
@@ -282,7 +282,7 @@ export const toolbarEvent = (vditor: IVditor, actionBtn: Element, event: Event) 
             if (range.toString() === "") {
                 const aElement = document.createElement("a");
                 if (commandName === "file-link") {
-                    aElement.classList.add("ficus-filelink");
+                    aElement.classList.add("bidhi-filelink");
                 }
                 aElement.innerText = Constants.ZWSP;
                 range.insertNode(aElement);
@@ -296,7 +296,7 @@ export const toolbarEvent = (vditor: IVditor, actionBtn: Element, event: Event) 
             } else {
                 const node = document.createElement("a");
                 if (commandName === "file-link") {
-                    node.classList.add("ficus-filelink");
+                    node.classList.add("bidhi-filelink");
                 }
                 node.setAttribute("href", "");
                 node.innerHTML = range.toString();
@@ -304,6 +304,32 @@ export const toolbarEvent = (vditor: IVditor, actionBtn: Element, event: Event) 
                 range.insertNode(node);
                 setSelectionFocus(range);
                 genAPopover(vditor, node, range);
+                const textInputElements = vditor.wysiwyg.popover.querySelectorAll("input");
+                textInputElements[0].value = node.innerText;
+                textInputElements[1].focus();
+            }
+            useHighlight = false;
+            actionBtn.classList.add("vditor-menu--current");
+        } else if (commandName === "img-link") {
+            if (range.toString() === "") {
+                const imgElement = document.createElement("img");
+                imgElement.innerText = Constants.ZWSP;
+                range.insertNode(imgElement);
+                range.setStart(imgElement.firstChild, 1);
+                range.collapse(true);
+                genImagePopover(null, vditor, imgElement);
+                const textInputElement = vditor.wysiwyg.popover.querySelector("input");
+                textInputElement.value = "";
+                textInputElement.focus();
+                useRender = false;
+            } else {
+                const node = document.createElement("img");
+                node.setAttribute("href", "");
+                node.innerHTML = range.toString();
+                range.surroundContents(node);
+                range.insertNode(node);
+                setSelectionFocus(range);
+                genImagePopover(null, vditor, node);
                 const textInputElements = vditor.wysiwyg.popover.querySelectorAll("input");
                 textInputElements[0].value = node.innerText;
                 textInputElements[1].focus();
