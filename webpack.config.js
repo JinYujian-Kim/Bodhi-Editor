@@ -154,6 +154,7 @@ module.exports = [
             }),
             new webpack.DefinePlugin({
                 VDITOR_VERSION: JSON.stringify(VditorVersion),
+                FICUS_EDITOR_VERSION: JSON.stringify(pkg.version)
             }),
             new MiniCssExtractPlugin({
                 filename: 'index.css',
