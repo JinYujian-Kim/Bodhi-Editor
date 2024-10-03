@@ -111,6 +111,7 @@ export class Toolbar {
             case "highlight":
             case "sup-script":
             case "sub-script":
+            case "underline":
                 menuItemObj = new MenuItem(vditor, menuItem);
                 break;
             case "emoji":
@@ -118,6 +119,11 @@ export class Toolbar {
                 break;
             case "headings":
                 menuItemObj = new Headings(vditor, menuItem);
+                 // 将不同级别标题对应的button也放入Elements中
+                 const buttons = menuItemObj.getButtons()
+                 for (let key in buttons) {
+                     this.elements[key] = buttons[key];
+                 }
                 break;
             case "|":
                 menuItemObj = new Divider();
