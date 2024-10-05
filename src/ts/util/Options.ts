@@ -125,9 +125,6 @@ export class Options {
             "inline-math",
             "math-block",
             "highlight",
-            "sup-script",
-            "sub-script",
-            "underline",
         ],
         toolbarConfig: {
             hide: false,
@@ -456,31 +453,6 @@ export class Options {
                 prefix: "==",
                 suffix: "==",
                 tip: "highlight",
-                tipPosition: "ne"
-            },
-            {
-                icon: '<svg><use xlink:href="#vditor-icon-emoji"></use></svg>',
-                name: "sup-script",
-                prefix: "<sup>",
-                suffix: "</sup>",
-                tip: "sup-script",
-                tipPosition: "ne"
-            },
-            {
-                icon: '<svg><use xlink:href="#vditor-icon-emoji"></use></svg>',
-                name: "sub-script",
-                prefix: "<sub>",
-                suffix: "</sub>",
-                tip: "sub-script",
-                tipPosition: "ne"
-        
-            },
-            {
-                icon: '<svg><use xlink:href="#vditor-icon-emoji"></use></svg>',
-                name: "underline",
-                prefix: "<u>",
-                suffix: "</u>",
-                tip: "underline",
                 tipPosition: "ne"
             },
             {

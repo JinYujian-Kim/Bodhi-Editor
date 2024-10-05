@@ -517,7 +517,6 @@ public changeEditMode(targetMode: string) {
                 element = this.vditor.toolbar.elements["code"].children[0] as HTMLElement;
                 break;
         }
-        console.log(element)
         element.click()
     }
     public addFormat(type: string) {
@@ -534,10 +533,6 @@ public changeEditMode(targetMode: string) {
             case "strike":
                 element = this.vditor.toolbar.elements[type].children[0] as HTMLElement;
                 break;
-            // todo
-            // case "underline":
-            // case "sup-script":
-            // case "sub-script":
         }
         element.click()
     }
