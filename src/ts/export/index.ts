@@ -35,8 +35,9 @@ window.addEventListener("message", (e) => {
   }
   Vditor.preview(document.getElementById('preview'), e.data, {
     cdn: "${vditor.options.cdn}",
-    markdown: {
-      theme: ${JSON.stringify(vditor.options.preview.theme)}
+    theme: {
+        current: "${vditor.options.preview.theme.current}",
+        path: "${vditor.options.preview.theme.path}",
     },
     hljs: {
       style: "${vditor.options.preview.hljs.style}"
