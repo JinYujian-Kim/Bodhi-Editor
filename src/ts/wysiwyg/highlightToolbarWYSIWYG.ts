@@ -109,6 +109,12 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
             setCurrentToolbar(vditor.toolbar.elements, ["strike"]);
         }
 
+        if (
+            hasClosestByMatchTag(typeElement, "MARK")
+        ) {
+            setCurrentToolbar(vditor.toolbar.elements, ["highlight"]);
+        }
+
         // comments
         vditor.wysiwyg.element
             .querySelectorAll(".vditor-comment--focus")
@@ -162,6 +168,7 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
                     "link",
                     "table",
                     "record",
+                    "highlight"
                 ]);
                 setCurrentToolbar(vditor.toolbar.elements, ["code"]);
             } else {
@@ -180,6 +187,7 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
                     "link",
                     "table",
                     "record",
+                    "highlight"
                 ]);
                 setCurrentToolbar(vditor.toolbar.elements, ["inline-code"]);
             }
