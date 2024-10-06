@@ -15,6 +15,12 @@
 .vditor {
   border: none;
 }
+.vditor-sv {
+  padding-left: 70px;
+}
+.vditor-preview {
+  padding-right: 70px;
+}
 .vditor-reset {
   font-family: "Noto Serif SC";
   font-weight: 400px;
