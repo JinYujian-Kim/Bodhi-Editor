@@ -24,12 +24,13 @@
 pre.vditor-sv:focus {
     background: var(--White);
 }
-.vditor-reset pre.vditor-wysiwyg__pre > code{
+.vditor-reset pre.vditor-wysiwyg__pre>code {
     background: var(--TextLight);
 }
 /* 段落 */
 .vditor-reset p {
-    font-weight: 400; /* Regular */
+    font-weight: 400;
+    /* Regular */
     font-size: 12px;
     line-height: 18px;
     color: var(--TextMedium);
@@ -118,35 +119,42 @@ pre.vditor-sv:focus {
     height: 0;
 }
 /* 引用块 */
-.vditor-reset blockquote p{
-    font-weight: 200; /* ExtraLight */
+.vditor-reset blockquote p {
+    font-weight: 200;
+    /* ExtraLight */
     font-size: 12px;
     line-height: 18px;
     color: var(--TextQuote);
     text-align: justify;
-    display: flex;
-    align-items: center;
+    vertical-align: center;
+    margin-bottom: 12px;
 }
 .vditor-reset blockquote p b,
-.vditor-reset blockquote p strong{
-    font-weight: 400; /* Regular */
+.vditor-reset blockquote p strong {
+    font-weight: 400;
+    /* Regular */
 }
 /* 代码块 */
-.vditor-reset pre > code {
+.vditor-reset pre>code {
     background-color: var(--SwissCoffee-500);
-}
- /** 列表 **/
- .vditor-reset ol > li,
- .vditor-reset ul > li
- {
-   font-weight: 400; /* Regular */
+  }
+  /** 列表 **/
+  .vditor-reset ol>li,
+  .vditor-reset ul>li {
+    font-weight: 400;
+    /* Regular */
     font-size: 12px;
     line-height: 18px;
     color: var(--TextMedium);
     text-align: justify;
     vertical-align: center;
- }
- .vditor-reset li p{
-   margin-bottom: 0px;
- }
- 
+  }
+  .vditor-reset li p {
+    margin-bottom: 0px;
+  }
+  /** 内联代码块样式 **/
+  .vditor-reset code:not(.hljs):not(.highlight-chroma) {
+    font-weight: 400; /* Regular */
+    font-size: 12px;
+    line-height: 18px;
+  }

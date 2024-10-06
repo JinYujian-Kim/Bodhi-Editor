@@ -124,8 +124,8 @@ pre.vditor-sv:focus {
   line-height: 18px;
   color: var(--TextQuote);
   text-align: justify;
-  display: flex;
-  align-items: center;
+  vertical-align: center;
+  margin-bottom: 12px;
 }
 .vditor-reset blockquote p b,
 .vditor-reset blockquote p strong{
@@ -148,4 +148,10 @@ pre.vditor-sv:focus {
 }
 .vditor-reset li p{
   margin-bottom: 0px;
+}
+/** 内联代码块样式 **/
+.vditor-reset code:not(.hljs):not(.highlight-chroma) {
+  font-weight: 400; /* Regular */
+  font-size: 12px;
+  line-height: 18px;
 }
