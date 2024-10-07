@@ -634,6 +634,10 @@ public changeEditMode(targetMode: string) {
             processSVAfterRender(this.vditor);
         }
     }
+        /** 设置打字机模式 **/
+        public setTypewriterMode(enable: boolean) {
+            this.vditor.options.typewriterMode = enable;
+        }
     private init(id: HTMLElement, mergedOptions: IOptions) {
         this.vditor = {
             currentMode: mergedOptions.mode,
