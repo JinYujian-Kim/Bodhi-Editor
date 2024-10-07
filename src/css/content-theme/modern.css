@@ -179,4 +179,8 @@ pre.vditor-sv:focus {
 .vditor-reset table th:first-child:after,
 .vditor-reset table td:first-child:after {
   display: none;
-  }
+}
+/** 有序列表 **/
+.vditor-reset ol {
+  list-style-type: decimal;
+}

@@ -1082,9 +1082,13 @@ export const genImagePopover = (event: Event, vditor: IVditor, img?: HTMLElement
     } else {
         imgElement = event.target as HTMLImageElement;
     }
+    if (imgElement.getAttribute("src").indexOf("bodhi://") !== 0) {
+        imgElement.setAttribute("src", "bodhi://" + imgElement.getAttribute("src"));
+    }
     vditor.wysiwyg.popover.innerHTML = "";
     const updateImg = () => {
-        imgElement.setAttribute("src", inputElement.value);
+        
+        imgElement.setAttribute("src", "bodhi://" + inputElement.value);
         imgElement.setAttribute("alt", alt.value);
         imgElement.setAttribute("title", title.value);
         if (typeof vditor.options.input === "function") {
@@ -1099,7 +1103,7 @@ export const genImagePopover = (event: Event, vditor: IVditor, img?: HTMLElement
     inputWrap.appendChild(inputElement);
     inputElement.className = "vditor-input";
     inputElement.setAttribute("placeholder", window.VditorI18n.imageURL);
-    inputElement.value = imgElement.getAttribute("src") || "";
+    inputElement.value = imgElement.getAttribute("src").slice('bodhi://'.length) || "";
     inputElement.oninput = () => {
         updateImg();
     };
