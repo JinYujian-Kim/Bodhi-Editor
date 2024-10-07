@@ -29,11 +29,18 @@ class Undo {
     }
 
     public clearStack(vditor: IVditor) {
+        if (!vditor.options.undoEnable)  {
+            return;
+        }
         this.resetStack();
         this.resetIcon(vditor);
     }
 
     public resetIcon(vditor: IVditor) {
+        if (!vditor.options.undoEnable)  {
+            return;
+        }
+
         if (!vditor.toolbar) {
             return;
         }
@@ -52,6 +59,9 @@ class Undo {
     }
 
     public undo(vditor: IVditor) {
+        if (!vditor.options.undoEnable)  {
+            return;
+        }
         if (vditor[vditor.currentMode].element.getAttribute("contenteditable") === "false") {
             return;
         }
@@ -70,6 +80,10 @@ class Undo {
     }
 
     public redo(vditor: IVditor) {
+        if (!vditor.options.undoEnable)  {
+            return;
+        }
+
         if (vditor[vditor.currentMode].element.getAttribute("contenteditable") === "false") {
             return;
         }
@@ -82,6 +96,10 @@ class Undo {
     }
 
     public recordFirstPosition(vditor: IVditor, event: KeyboardEvent) {
+        if (!vditor.options.undoEnable)  {
+            return;
+        }
+
         if (getSelection().rangeCount === 0) {
             return;
         }
@@ -109,6 +127,9 @@ class Undo {
     }
 
     public addToUndoStack(vditor: IVditor) {
+        if (!vditor.options.undoEnable)  {
+            return;
+        }
         // afterRenderEvent.ts 已经 debounce
         const text = this.addCaret(vditor, true);
         const diff = this.dmp.diff_main(text, this[vditor.currentMode].lastText, true);
