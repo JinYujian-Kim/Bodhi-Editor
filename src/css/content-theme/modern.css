@@ -16,10 +16,10 @@
     border: none;
 }
 .vditor-sv {
-    padding-left: 70px;
+    padding-left: 88px;
   }
   .vditor-preview {
-    padding-right: 70px;
+    padding-right: 88px;
   }
 .vditor-reset {
     font-family: "Noto Sans SC";
@@ -40,8 +40,8 @@ pre.vditor-sv:focus {
     vertical-align: center;
     margin-bottom: 12px;
 }
-.vditor-reset p b,
-.vditor-reset p strong {
+.vditor-reset b,
+.vditor-reset strong {
     font-weight: 900;
 }
 .vditor-reset pre.vditor-wysiwyg__pre>code {
@@ -110,20 +110,7 @@ pre.vditor-sv:focus {
     transform: scale(1, 0.5);
     height: 0;
 }
-/* 引用块 */
-.vditor-reset blockquote p {
-    font-weight: 200; /* ExtraLight */
-    font-size: 16px;
-    line-height: 30px;
-    color: var(--TextQuote);
-    text-align: justify;
-    vertical-align: center;
-    margin-bottom: 12px;
-}
-.vditor-reset blockquote p b,
-.vditor-reset blockquote p strong {
-  font-weight: 400; /* Regular */
-  }
+
   /** 列表 **/
   .vditor-reset ol > li,
   .vditor-reset ul > li {
@@ -135,7 +122,18 @@ pre.vditor-sv:focus {
     vertical-align: center;
   }
   .vditor-reset li p {
-    margin-bottom: 0px;
+    margin-bottom: 0;
+}
+/* 引用块 */
+.vditor-reset blockquote p,
+.vditor-reset blockquote ol > li,
+.vditor-reset blockquote  ul > li {
+  font-weight: 200; /* ExtraLight */
+  color: var(--TextQuote) !important;
+}
+.vditor-reset blockquote b,
+.vditor-reset blockquote strong {
+  font-weight: 400; /* Regular */
   }
   /** 内联代码 **/
 .vditor-reset code[data-marker="`"],
