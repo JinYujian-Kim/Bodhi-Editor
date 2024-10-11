@@ -6,7 +6,6 @@ import {execAfterRender} from "../util/fixBrowserBehavior";
 import {hasClosestByAttribute, hasClosestByClassName} from "../util/hasClosest";
 import {processCodeRender} from "../util/processCode";
 import {getCursorPosition, insertHTML, setSelectionFocus} from "../util/selection";
-import * as katexFuncs from './katex-funcs';
 
 export class Hint {
     public timeId: number;
@@ -14,85 +13,13 @@ export class Hint {
     public recentLanguage: string;
     private splitChar = "";
     private lastIndex = -1;
-    private c0 = Array.from(new Set(
-        [
-            ...katexFuncs.delimiters0, ...katexFuncs.delimeterSizing0,
-            ...katexFuncs.greekLetters0, ...katexFuncs.otherLetters0,
-            ...katexFuncs.spacing0, ...katexFuncs.verticalLayout0,
-            ...katexFuncs.logicAndSetTheory0, ...katexFuncs.macros0, ...katexFuncs.bigOperators0,
-            ...katexFuncs.binaryOperators0, ...katexFuncs.binomialCoefficients0,
-            ...katexFuncs.fractions0, ...katexFuncs.mathOperators0,
-            ...katexFuncs.relations0, ...katexFuncs.negatedRelations0,
-            ...katexFuncs.arrows0, ...katexFuncs.font0, ...katexFuncs.size0,
-            ...katexFuncs.style0, ...katexFuncs.symbolsAndPunctuation0,
-            ...katexFuncs.debugging0
-        ]
-    ))
-    private c1 = Array.from(new Set(
-        [
-            ...katexFuncs.accents1, ...katexFuncs.annotation1,
-            ...katexFuncs.verticalLayout1, ...katexFuncs.overlap1, ...katexFuncs.spacing1,
-            ...katexFuncs.logicAndSetTheory1, ...katexFuncs.mathOperators1, ...katexFuncs.sqrt1,
-            ...katexFuncs.extensibleArrows1, ...katexFuncs.font1,
-            ...katexFuncs.braketNotation1, ...katexFuncs.classAssignment1
-        ]
-    ))
-    private c2 = Array.from(new Set(
-        [
-            ...katexFuncs.verticalLayout2, ...katexFuncs.binomialCoefficients2,
-            ...katexFuncs.fractions2, ...katexFuncs.color2
-        ]
-    ))
-    private latexList : String[] = []
 
     constructor(hintExtends: IHintExtend[]) {
         this.timeId = -1;
         this.element = document.createElement("div");
         this.element.className = "vditor-hint";
         this.recentLanguage = "";
-        hintExtends.push({key: ":"});
-        console.log(this.latexList)
-        this.c0.forEach(
-            (item) => {this.latexList.push(item)}
-        )
-        this.c1.forEach(
-            (item) => {this.latexList.push(item + '{}')}
-        )
-        this.c2.forEach(
-            (item) => {this.latexList.push(item + '{}{}')}
-        )
-        hintExtends.push(
-            {
-                key: '\\',
-                hint: (key) => 
-                {
-                    console.log('key ,',key)
-                    let ret :IHintData[]= []
-                    // if ('vditor'.indexOf(key.toLocaleLowerCase()) > -1) {
-                    if (key != "")
-                    {
-                        this.latexList.forEach(
-                            (kw) => 
-                            {
-                                // key 是 kw 的前缀
-                                if (key.toLowerCase() === kw.substring(0, key.length).toLowerCase()) {
-                                    ret.push({value: '\\' + kw, html: '\\' + kw})
-                                }
-                            }
-                        )
-                    }
-                    else {
-                        this.latexList.forEach(
-                            (kw) => 
-                            {
-                                ret.push({value: '\\' + kw, html: '\\' + kw})
-                            }
-                        )
-                    }
-                    return ret
-                }
-            }
-        )
+        hintExtends.push({key: ":"}); // 已经包含了emoji提示`:`
     }
 
     public render(vditor: IVditor) {
@@ -102,25 +29,27 @@ export class Hint {
         let currentLineValue: string;
         const range = getSelection().getRangeAt(0);
         currentLineValue = range.startContainer.textContent.substring(0, range.startOffset) || "";
-                // 当前行
-                console.log("line:", currentLineValue)
-        const key = this.getKey(currentLineValue, vditor.options.hint.extend);
-
+        console.log(currentLineValue)
+        const key = this.getKey(currentLineValue, vditor.options.hint.extend); // 这里的key表示splitChar后面的字符
+        console.log(key)
         if (typeof key === "undefined") {
             this.element.style.display = "none";
             clearTimeout(this.timeId);
         } else {
             if (this.splitChar === ":") {
                 const emojiHint = key === "" ? vditor.options.hint.emoji : vditor.lute.GetEmojis();
+                console.log(emojiHint)
                 const matchEmojiData: IHintData[] = [];
                 Object.keys(emojiHint).forEach((keyName) => {
                     if (keyName.indexOf(key.toLowerCase()) === 0) {
+                        // 如果是图片链接
                         if (emojiHint[keyName].indexOf(".") > -1) {
                             matchEmojiData.push({
                                 html: `<img src="${emojiHint[keyName]}" title=":${keyName}:"/> :${keyName}:`,
                                 value: `:${keyName}:`,
                             });
                         } else {
+                            // html表示列表展示的内容，value表示插入的内容
                             matchEmojiData.push({
                                 html: `<span class="vditor-hint__emoji">${emojiHint[keyName]}</span>${keyName}`,
                                 value: emojiHint[keyName],
@@ -155,11 +84,12 @@ export class Hint {
         const y = textareaPosition.top;
         let hintsHTML = "";
 
+        // 遍历匹配的数据，构造下拉框的html
         data.forEach((hintData, i) => {
             if (i > 7) {
                 return;
             }
-            // process high light
+            // 加粗匹配的字符
             let html = hintData.html;
             if (key !== "") {
                 const lastIndex = html.lastIndexOf(">") + 1;
@@ -172,10 +102,14 @@ export class Hint {
                     html = html.substr(0, lastIndex) + replaceHtml;
                 }
             }
-            hintsHTML += `<button type="button" data-value="${encodeURIComponent(hintData.value)} "
+            // 构造对应的按钮，加入到hintsHTML中
+            // data-value表示插入的内容
+            // html表示列表按钮展示的内容
+            hintsHTML += `<button data-value="${encodeURIComponent(hintData.value)} "
 ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         });
 
+        // 将生成的下拉框html插入到this.element中，调整下拉框的位置，同时进行显示
         this.element.innerHTML = hintsHTML;
         const lineHeight = parseInt(document.defaultView.getComputedStyle(editorElement, null)
             .getPropertyValue("line-height"), 10);
@@ -184,6 +118,7 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         this.element.style.display = "block";
         this.element.style.right = "auto";
 
+        // 为下拉框的每个button绑定click事件，事件发生时通过fillEmoji方法进行内容的插入
         this.element.querySelectorAll("button").forEach((element) => {
             element.addEventListener("click", (event) => {
                 this.fillEmoji(element, vditor);
