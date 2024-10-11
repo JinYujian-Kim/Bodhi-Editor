@@ -75,6 +75,13 @@ const initVditor = (language) => {
                 engine: 'MathJax',
                 inlineDigit: true,
             },
+            theme: {
+                current: 'classic',
+                list: {
+                    'classic': 'classic',
+                    'modern': 'modern'
+                },
+            }
         },
         toolbarConfig: {
             pin: true,
