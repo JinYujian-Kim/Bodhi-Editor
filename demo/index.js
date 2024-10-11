@@ -94,7 +94,7 @@ const initVditor = (language) => {
         after() {
         },
         hint: {
-            emojiPath: 'https://unpkg.com/ficus-editor/dist/images/emoji',
+            emojiPath: 'https://unpkg.com/bodhi-editor/dist/images/emoji',
             emojiTail: '<a href="https://ld246.com/settings/function" target="_blank">设置常用表情</a>',
             emoji: {
                 'sd': '💔',
