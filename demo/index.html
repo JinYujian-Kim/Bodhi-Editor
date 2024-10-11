@@ -16,11 +16,11 @@
           content="Vditor 支持三种所见即所得（wysiwyg）、即时渲染（ir）、分屏预览（sv）模式，支持大纲、数学公式、脑图、图表、流程图、甘特图、时序图、五线谱、多媒体、语音阅读、标题锚点、代码高亮及复制、graphviz 渲染。"/>
     <meta name="twitter:description" property="og:description" itemprop="description"
           content="Vditor 支持三种所见即所得（wysiwyg）、即时渲染（ir）、分屏预览（sv）模式，支持大纲、数学公式、脑图、图表、流程图、甘特图、时序图、五线谱、多媒体、语音阅读、标题锚点、代码高亮及复制、graphviz 渲染。"/>
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net/"/>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/vditor/dist/images/logo.png"/>
-    <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/vditor/dist/images/logo.png">
-    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/vditor/dist/images/logo.png">
+    <link rel="dns-prefetch" href="//unpkg.com/"/>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="icon" type="image/png" href="https://unpkg.com/ficus-editor/dist/images/logo.png"/>
+    <link rel="apple-touch-icon" href="https://unpkg.com/ficus-editor/dist/images/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://unpkg.com/ficus-editor/dist/images/logo.png">
     <meta name="copyright" content="B3log"/>
     <meta http-equiv="Window-target" content="_top"/>
     <meta property="og:locale" content="zh-cmn-Hans"/>
@@ -30,12 +30,12 @@
     <meta property="og:url" content="https://b3log.org/vditor"/>
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:domain" content="b3log.org"/>
-    <meta name="twitter:title" property="og:title" itemprop="b3log vditor"
+    <meta name="twitter:title" property="og:title" itemprop="b3lig vditor"
           content="Vditor: ♏ An In-browser Markdown editor, support WYSIWYG,  Instant Rendering (Typora-like) and Split View modes. 一款浏览器端的 Markdown 编辑器，支持所见即所得、即时渲染（类似 Typora）和分屏预览模式。"/>
     <meta name="twitter:site" content="@B3logOS"/>
     <meta name="twitter:url" content="https://b3log.org/vditor"/>
-    <meta property="og:image" content="https://cdn.jsdelivr.net/npm/vditor/dist/images/logo.png"/>
-    <meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/vditor/dist/images/logo.png"/>
+    <meta property="og:image" content="https://unpkg.com/ficus-editor/dist/images/logo.png"/>
+    <meta name="twitter:image" content="https://unpkg.com/ficus-editor/dist/images/logo.png"/>
     <style>
         body {
             margin: 0;
@@ -51,7 +51,7 @@
             color: #4285f4;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/vconsole@3.14.7/dist/vconsole.min.js"></script>
+    <script src="https://unpkg.com/vconsole@3.14.7/dist/vconsole.min.js"></script>
 </head>
 <body>
 <div class="vditor-reset nav">
@@ -63,12 +63,38 @@
     <button onclick="window.vditor.setTheme('light', 'light', 'github');document.querySelector('body').style.backgroundColor=''">
         Light Mode
     </button> &nbsp; &nbsp;
+    <button id="changeKaTex">切换KaTex</button>
+    <button id="changeMathJax">切换MathJax</button>
+    <button id="displayLineNumber">代码块显示行号</button>
+    <button id="hideLineNumber">代码块隐藏行号</button>
+    <button id="autoSpace">自动加空格</button>
+    <button id="noAutoSpace">禁止自动加空格</button>
+    <button id="autoFixTermTypo">自动术语矫正</button>
+    <button id="noAutoFixTermTypo">禁止自动术语矫正</button>
+    <button id="changeCodeTheme">修改代码主题</button>
+    <button id="setPopoverToolbar">设置悬浮工具框</button>
+    <button id="displaySVPreview">显示SV渲染区域</button>
+    <button id="hideSVPreview">隐藏SV渲染区域</button>
+    <button id="editable">可以编辑</button>
+    <button id="unEditable">不可以编辑</button>
+
+
+
+    <input type="text" id="search-box">
+    <button id="search-open">搜索</button>
+    <button id="search-close">关闭</button>
+    <button id="search-prev">上一个</button>
+    <button id="search-next">下一个</button>
+
+    <input type="text" id="replace-box">
+    <button id="replace-button">替换</button>
+    <button id="replace-all-button">全部替换</button>
+    
     <select autocomplete="off" onchange="setLang(this.value)">
         <option selected="selected" value="zh_CN">zh_CN</option>
         <option value="zh_TW">zh_TW</option>
         <option value="en_US">en_US</option>
         <option value="fr_FR">fr_FR</option>
-        <option value="pt_BR">pt_BR</option>
         <option value="ru_RU">ru_RU</option>
         <option value="sv_SE">sv_SE</option>
         <option value="ja_JP">ja_JP</option>
