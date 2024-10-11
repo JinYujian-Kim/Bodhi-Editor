@@ -69,7 +69,7 @@ pre.vditor-sv:focus {
 .vditor-reset strong {
     font-weight: 900;
 }
-.vditor-reset pre.vditor-wysiwyg__pre>code {
+
 
 /* 标题 */
 .vditor-reset h1 {
@@ -238,4 +238,14 @@ pre.vditor-sv:focus {
 /** 有序列表 **/
 .vditor-reset ol {
   list-style-type: decimal;
+}
+/** 普通连接 **/
+.vditor-reset a {
+  color: #23C99A;
+  text-decoration: underline;
+}
+/** 文件引用 **/
+.vditor-reset a.ficus-filelink {
+  color: #4a72d3;
+  text-decoration: underline;
 }
