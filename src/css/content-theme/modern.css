@@ -26,6 +26,8 @@
 .vditor-reset {
     font-family: "Noto Sans SC";
     font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
   }
   .vditor-panel {
     border-radius: 8px;
@@ -51,8 +53,6 @@
 .vditor-wysiwyg pre.vditor-reset:focus,
 .vditor-ir pre.vditor-reset:focus,
 pre.vditor-sv:focus {
-  font-size: 16px;
-  line-height: 30px;
   background: var(--White);
 }
 /* 段落 */
