@@ -21,7 +21,11 @@ export const input = (vditor: IVditor, range: Range, event?: InputEvent) => {
     ['《', '》'], 
     ['（', '）'],
 ])
-if (event.inputType === 'insertText')
+if (!blockElement) {
+    // 使用顶级块元素，应使用 innerHTML
+    blockElement = vditor.wysiwyg.element;
+}
+if (event && event.inputType === 'insertText')
 {
     // 保存光标
     vditor.wysiwyg.element.querySelectorAll("wbr").forEach((wbr) => {
@@ -35,10 +39,7 @@ if (event.inputType === 'insertText')
     // 设置光标
     setRangeByWbr(vditor.wysiwyg.element, range);
 }
-    if (!blockElement) {
-        // 使用顶级块元素，应使用 innerHTML
-        blockElement = vditor.wysiwyg.element;
-    }
+
 
     if (event && event.inputType !== "formatItalic"
         && event.inputType !== "deleteByDrag"
