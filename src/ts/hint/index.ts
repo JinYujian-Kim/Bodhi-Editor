@@ -46,7 +46,7 @@ export class Hint {
         ]
     ))
     private latexList : String[] = []
-
+    private environments : String[] = ['matrix', 'align', 'align*']
     constructor(hintExtends: IHintExtend[]) {
         this.timeId = -1;
         this.element = document.createElement("div");
@@ -56,14 +56,15 @@ export class Hint {
         hintExtends.push({key: ":"});
         console.log(this.latexList)
         this.c0.forEach(
-            (item) => {this.latexList.push(item)}
+            (item) => {this.latexList.push(item) + '<wbr>'}
         )
         this.c1.forEach(
-            (item) => {this.latexList.push(item + '{}')}
+            (item) => {this.latexList.push(item + '{<wbr>}')}
         )
         this.c2.forEach(
-            (item) => {this.latexList.push(item + '{}{}')}
+            (item) => {this.latexList.push(item + '{<wbr>}{}')}
         )
+        this.latexList.push('begin{}<wbr>')
         hintExtends.push(
             {
                 key: '\\',
@@ -102,6 +103,35 @@ export class Hint {
                 }
             }
         )
+        hintExtends.push({
+            key: 'begin{',
+            hint: (key)=>
+            {
+                let ret :IHintData[]= []
+                if (key != "")
+                {
+                    this.environments.forEach(
+                        (kw) =>
+                        {
+                            // key 是 kw 的前缀
+                            if (key.toLowerCase() === kw.substring(0, key.length).toLowerCase()) {
+                                    ret.push({value: 'begin{' + kw + '}\n\t<wbr> \n \\end{' + kw , html: '' + kw})
+                            }
+                        }
+                    )
+                    ret.push({value: 'begin{' + key + '}\n\t<wbr> \n \\end{' + key , html: key + '\t ?'})
+                }
+                else {
+                    this.environments.forEach(
+                        (kw) =>
+                        {
+                            ret.push({value: 'begin{' + kw + '}\n\t<wbr> \n \\end{' + kw , html: '' + kw})
+                        }
+                    )
+                }
+                return ret
+            }
+        })
     }
 
     public render(vditor: IVditor) {
@@ -145,7 +175,7 @@ export class Hint {
                 vditor.options.hint.extend.forEach((item) => {
                     if (item.key === this.splitChar) {
                         console.log(this.isMath(vditor))
-                        if (item.key === "\\" && !this.isMath(vditor)) {
+                        if ((item.key === "\\" || item.key === "begin{") && !this.isMath(vditor)) {
                             return;
                         }
                         clearTimeout(this.timeId);
