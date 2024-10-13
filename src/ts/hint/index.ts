@@ -1,5 +1,6 @@
 import {Constants} from "../constants";
 import {processAfterRender} from "../ir/process";
+import { getHTML } from "../markdown/getHTML";
 import {code160to32} from "../util/code160to32";
 import {isCtrl} from "../util/compatibility";
 import {execAfterRender} from "../util/fixBrowserBehavior";
@@ -70,6 +71,7 @@ export class Hint {
                 {
                     console.log('key :' + key + "!")
                     let ret :IHintData[]= []
+                    let ret0 :IHintData[]= []
                     // if ('vditor'.indexOf(key.toLocaleLowerCase()) > -1) {
                     if (key != "")
                     {
@@ -78,10 +80,15 @@ export class Hint {
                             {
                                 // key 是 kw 的前缀
                                 if (key.toLowerCase() === kw.substring(0, key.length).toLowerCase()) {
-                                    ret.push({value: '\\' + kw, html: '\\' + kw})
+                                    if (key === kw.substring(0, key.length))  // 完全匹配的
+                                        ret.push({value: '\\' + kw, html: '\\' + kw})
+                                    
+                                    else // 忽略大小写匹配的
+                                        ret0.push({value: '\\' + kw, html: '\\' + kw})
                                 }
                             }
                         )
+                        ret = [...ret, ...ret0]
                     }
                     else {
                         this.latexList.forEach(
