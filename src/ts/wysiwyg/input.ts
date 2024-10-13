@@ -1,3 +1,4 @@
+import { InsertAfter } from "../toolbar/InsertAfter";
 import {
     getTopList,
     hasClosestBlock, hasClosestByAttribute, hasTopClosestByTag,
@@ -5,7 +6,7 @@ import {
 import {hasClosestByTag} from "../util/hasClosestByHeadings";
 import {log} from "../util/log";
 import {processCodeRender} from "../util/processCode";
-import {setRangeByWbr} from "../util/selection";
+import {getCursorPosition, insertHTML, setRangeByWbr} from "../util/selection";
 import {renderToc} from "../util/toc";
 import {afterRenderEvent} from "./afterRenderEvent";
 import {previoueIsEmptyA} from "./inlineTag";
