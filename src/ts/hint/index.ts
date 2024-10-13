@@ -277,7 +277,7 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         setSelectionFocus(range);
 
         if (vditor.currentMode === "wysiwyg") {
-            const preElement = hasClosestByClassName(range.startContainer, "vditor-wysiwyg__block");
+            let preElement = hasClosestByClassName(range.startContainer, "vditor-wysiwyg__block");
             if (preElement && preElement.lastElementChild.classList.contains("vditor-wysiwyg__preview")) {
                 preElement.lastElementChild.innerHTML = preElement.firstElementChild.innerHTML;
                 processCodeRender(preElement.lastElementChild as HTMLElement, vditor);
@@ -286,7 +286,13 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
             const preElement = hasClosestByClassName(range.startContainer, "vditor-ir__marker--pre");
             if (preElement && preElement.nextElementSibling.classList.contains("vditor-ir__preview")) {
                 preElement.nextElementSibling.innerHTML = preElement.innerHTML;
+                insertHTML('<wbr>', vditor)
+                let previousElement = preElement.previousElementSibling;
+                preElement.outerHTML = vditor.lute.SpinVditorDOM(preElement.outerHTML);
+                preElement = previousElement.nextElementSibling as HTMLElement;
+                showCode(preElement.lastElementChild as HTMLElement, vditor, false);
                 processCodeRender(preElement.nextElementSibling as HTMLElement, vditor);
+                setRangeByWbr(preElement, range)
             }
         }
         execAfterRender(vditor);
