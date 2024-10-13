@@ -111,6 +111,9 @@ export const processAfterRender = (vditor: IVditor, options = {
     }
 
     vditor.preview.render(vditor);
+    if (vditor.search.isSearching) {
+        vditor.search.run(vditor, vditor.search.searchText, false)
+    }
 
     const text = getMarkdown(vditor);
     if (typeof vditor.options.input === "function" && options.enableInput) {
