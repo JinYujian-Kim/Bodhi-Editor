@@ -39,6 +39,7 @@ export class Search {
         // 如果已经处于开启状态，则需要先清空已经高亮的内容
         if (this.isSearching) {
             this.clearResults(vditor);
+
         }
         // 合并连续的文本节点
         this.mergeTextNodes(vditor);
@@ -263,6 +264,7 @@ export class Search {
         // 如果replaceText仍然匹配searchText
         const pattern = /[\[\(\$\^\.\]\*\\\?\+\{\}\\|\)]/gi;
         const newSearchText = this.searchText.replace(pattern, key => "\\" + key);
+        console.log(newSearchText)
         const regExp = new RegExp(this.matchWholeWord ? `\\b${newSearchText}\\b` : newSearchText,
                                   this.ignoreCase ? "i" : "");
         if (replaceText.match(regExp)) {
