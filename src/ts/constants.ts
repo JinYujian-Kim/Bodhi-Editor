@@ -55,7 +55,7 @@ export abstract class Constants {
   };
   public static readonly MATH_OPTIONS: IMath = {
     engine: "KaTeX",
-    inlineDigit: false,
+    inlineDigit: true,
     macros: {},
   };
   public static readonly THEME_OPTIONS = {
