@@ -195,7 +195,18 @@ replaceAllButton.addEventListener("click", () => {
     const text = input.value;
     window.vditor.vditor.search.replaceAll(window.vditor.vditor, text);
 })
-
+document.getElementById("changeKaTex").addEventListener("click", () => {
+    window.vditor.changeLatexEngine("KaTex")
+})
+document.getElementById("changeMathJax").addEventListener("click", () => {
+    window.vditor.changeLatexEngine("MathJax")
+})
+document.getElementById("displayLineNumber").addEventListener("click", () => {
+    window.vditor.setCodeBlockLineNumber(true)
+})
+document.getElementById("hideLineNumber").addEventListener("click", () => {
+    window.vditor.setCodeBlockLineNumber(false)
+})
 
 document.getElementById("changeKaTex").addEventListener("click", () => {
     window.vditor.setLatexEngine("KaTex")
