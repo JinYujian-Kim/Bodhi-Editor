@@ -735,7 +735,9 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
                 vditor.wysiwyg.popover.insertAdjacentElement("beforeend", languageWrap);
             }
             if (vditor.wysiwyg.popover.innerHTML !== "") {
-                setPopoverPosition(vditor, blockRenderElement);
+                if (vditor.wysiwyg.popover.innerHTML !== "") {
+                    setPopoverPosition(vditor, blockRenderElement);
+                }
                 if (vditor.wysiwyg.newCodeBlock) {
                     (vditor.wysiwyg.popover.firstElementChild.firstElementChild as HTMLInputElement).focus();
                     vditor.wysiwyg.newCodeBlock = false;
