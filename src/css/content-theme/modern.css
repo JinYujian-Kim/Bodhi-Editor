@@ -195,7 +195,7 @@ pre.vditor-sv:focus {
   padding-top: 10px;
 }
 .vditor-reset mjx-container svg {
-  width: 30%;
+  height: 12px;
   padding-top: 0;
   vertical-align: 0 !important;
 }
