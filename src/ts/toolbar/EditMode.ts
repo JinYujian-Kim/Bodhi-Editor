@@ -27,6 +27,7 @@ export const setEditMode = (vditor: IVditor, type: string, event: Event | string
         event.preventDefault();
         markdownText = getMarkdown(vditor);
     } else {
+        hidePanel(vditor, ["subToolbar", "hint"]);
         markdownText = event;
     }
     if (vditor.currentMode === type && typeof event !== "string") {
