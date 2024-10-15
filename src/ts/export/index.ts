@@ -82,6 +82,9 @@ Vditor.mermaidRender(previewElement, '${Constants.CDN}', '${vditor.options.theme
     Vditor.abcRender(previewElement, '${Constants.CDN}');
     ${vditor.options.preview.render.media.enable ? 'Vditor.mediaRender(previewElement);' : ""}
     Vditor.speechRender(previewElement);
+    document.querySelectorAll('.vditor-reset code').forEach((code) => {
+        code.style['max-height'] = 'none';
+    })
 </script>
 <script src="${Constants.CDN}/dist/js/icons/${vditor.options.icon}.js"></script></body></html>`;
 if(autoDownload) download(vditor, html, "demo.html");
