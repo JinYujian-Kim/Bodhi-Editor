@@ -688,14 +688,18 @@ public changeEditMode(targetMode: string) {
         }
         // 重新渲染已有的数学公式
         if (this.vditor.currentMode === "wysiwyg") {
-            const editorElement = this.vditor.wysiwyg.element;
-            editorElement.innerHTML = this.vditor.lute.Md2VditorDOM(getMarkdown(this.vditor));
-            editorElement.querySelectorAll(".vditor-wysiwyg__preview[data-render='2']").forEach((item: HTMLElement) => {
-                processCodeRender(item, this.vditor);
-                item.previousElementSibling.setAttribute("style", "display:none");
+            renderDomByMd(this.vditor, getMarkdown(this.vditor), {
+                enableAddUndoStack: true,
+                enableHint: false,
+                enableInput: false,
             });
         } else if (this.vditor.currentMode === "sv") {
-            this.vditor.preview.render(this.vditor);
+            this.vditor.sv.element.innerHTML = `<div data-block='0'>${this.vditor.lute.SpinVditorSVDOM(getMarkdown(this.vditor))}</div>`;
+            processSVAfterRender(this.vditor, {
+                enableAddUndoStack: true,
+                enableHint: false,
+                enableInput: false,
+            });
         }
     }
         /* 设置代码块行号的显示和隐藏 */
@@ -707,11 +711,10 @@ public changeEditMode(targetMode: string) {
             this.vditor.options.preview.hljs.lineNumber = enable;
             // 重新渲染已有的代码块
             if (this.vditor.currentMode === "wysiwyg") {
-                const editorElement = this.vditor.wysiwyg.element;
-                editorElement.innerHTML = this.vditor.lute.Md2VditorDOM(getMarkdown(this.vditor));
-                editorElement.querySelectorAll(".vditor-wysiwyg__preview[data-render='2']").forEach((item: HTMLElement) => {
-                    processCodeRender(item, this.vditor);
-                    item.previousElementSibling.setAttribute("style", "display:none");
+                renderDomByMd(this.vditor, getMarkdown(this.vditor), {
+                    enableAddUndoStack: true,
+                    enableHint: false,
+                    enableInput: false,
                 });
             } else if (this.vditor.currentMode === "sv") {
                 this.vditor.preview.render(this.vditor);
