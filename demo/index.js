@@ -255,6 +255,12 @@ document.getElementById("setPopoverToolbar").addEventListener("click", () => {
         clear: true
     })
 })
+document.getElementById("displaySVPreview").addEventListener("click", () => {
+    window.vditor.setSVPreview(true)
+})
+document.getElementById("hideSVPreview").addEventListener("click", () => {
+    window.vditor.setSVPreview(false)
+})
 
 document.getElementById("displaySVPreview").addEventListener("click", () => {
     window.vditor.setPreviewMode("both")
