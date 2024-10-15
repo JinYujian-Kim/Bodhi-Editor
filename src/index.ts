@@ -746,7 +746,7 @@ public changeEditMode(targetMode: string) {
             this.vditor.preview.render(this.vditor);
         }
     }
-     // 设置自动矫正术语
+     /** 设置自动矫正术语 */
      public setAutoFixTermTypo(enable: boolean) {
         if (this.vditor.options.preview.markdown.fixTermTypo === enable) {
             return;
@@ -770,6 +770,12 @@ public changeEditMode(targetMode: string) {
             });
         }
     }
+        /** 设置悬浮工具框的内容 */
+        public setPopoverToolbar(options: IOptions["popoverToolbar"]) {
+            this.vditor.options.popoverToolbar = options;
+            this.vditor.wysiwyg.popover.innerHTML = "";
+            this.vditor.wysiwyg.popover.style.display = "none";
+        }
     private init(id: HTMLElement, mergedOptions: IOptions) {
         this.vditor = {
             currentMode: mergedOptions.mode,
