@@ -717,7 +717,11 @@ public changeEditMode(targetMode: string) {
                     enableInput: false,
                 });
             } else if (this.vditor.currentMode === "sv") {
-                this.vditor.preview.render(this.vditor);
+                this.vditor.sv.element.innerHTML = `<div data-block='0'>${this.vditor.lute.SpinVditorSVDOM(getMarkdown(this.vditor))}</div>`;
+            processSVAfterRender(this.vditor, {
+                enableAddUndoStack: true,
+                enableHint: false,
+                enableInput: false,
             }
         }
             /* 设置sv模式下自动加空格 */
@@ -730,8 +734,31 @@ public changeEditMode(targetMode: string) {
         this.vditor.lute.SetAutoSpace(enable);
         // 在sv模式下重新渲染
         if (this.vditor.currentMode === "sv") {
-            console.log('hello')
             this.vditor.preview.render(this.vditor);
+        }
+    }
+     // 设置自动矫正术语
+     public setAutoFixTermTypo(enable: boolean) {
+        if (this.vditor.options.preview.markdown.fixTermTypo === enable) {
+            return;
+        }
+        // 在options中设置
+        this.vditor.options.preview.markdown.fixTermTypo = enable;
+        this.vditor.lute.SetFixTermTypo(enable);
+        // 重新渲染
+        if (this.vditor.currentMode === "wysiwyg") {
+            renderDomByMd(this.vditor, getMarkdown(this.vditor), {
+                enableAddUndoStack: true,
+                enableHint: false,
+                enableInput: true,
+            });
+        } else if (this.vditor.currentMode === "sv") {
+            this.vditor.sv.element.innerHTML = `<div data-block='0'>${this.vditor.lute.SpinVditorSVDOM(getMarkdown(this.vditor))}</div>`;
+            processSVAfterRender(this.vditor, {
+                enableAddUndoStack: true,
+                enableHint: false,
+                enableInput: true,
+            });
         }
     }
     private init(id: HTMLElement, mergedOptions: IOptions) {
