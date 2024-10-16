@@ -216,30 +216,30 @@ export const hotkeyEvent = (vditor: IVditor, editorElement: HTMLElement) => {
         }
 
         // toolbar action
-        vditor.options.toolbar.find((menuItem: IMenuItem) => {
-            if (!menuItem.hotkey || menuItem.toolbar) {
-                if (menuItem.toolbar) {
-                    const sub = menuItem.toolbar.find((subMenuItem: IMenuItem) => {
-                        if (!subMenuItem.hotkey) {
-                            return false;
-                        }
-                        if (matchHotKey(subMenuItem.hotkey, event)) {
-                            vditor.toolbar.elements[subMenuItem.name].children[0]
-                                .dispatchEvent(new CustomEvent(getEventName()));
-                            event.preventDefault();
-                            return true;
-                        }
-                    });
-                    return sub ? true : false;
-                }
-                return false;
-            }
-            if (matchHotKey(menuItem.hotkey, event)) {
-                vditor.toolbar.elements[menuItem.name].children[0].dispatchEvent(new CustomEvent(getEventName()));
-                event.preventDefault();
-                return true;
-            }
-        });
+// vditor.options.toolbar.find((menuItem: IMenuItem) => {
+        //     if (!menuItem.hotkey || menuItem.toolbar) {
+        //         if (menuItem.toolbar) {
+        //             const sub = menuItem.toolbar.find((subMenuItem: IMenuItem) => {
+        //                 if (!subMenuItem.hotkey) {
+        //                     return false;
+        //                 }
+        //                 if (matchHotKey(subMenuItem.hotkey, event)) {
+        //                     vditor.toolbar.elements[subMenuItem.name].children[0]
+        //                         .dispatchEvent(new CustomEvent(getEventName()));
+        //                     event.preventDefault();
+        //                     return true;
+        //                 }
+        //             });
+        //             return sub ? true : false;
+        //         }
+        //         return false;
+        //     }
+        //     if (matchHotKey(menuItem.hotkey, event)) {
+        //         vditor.toolbar.elements[menuItem.name].children[0].dispatchEvent(new CustomEvent(getEventName()));
+        //         event.preventDefault();
+        //         return true;
+        //     }
+        // });
     });
 };
 
