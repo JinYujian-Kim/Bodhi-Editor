@@ -1201,10 +1201,22 @@ export const genAPopover = (vditor: IVditor, aElement: HTMLElement, range: Range
         if (removeBlockElement(vditor, event)) {
             return;
         }
-        if (focusToElement(event, range)) {
+         //     return;
+        // }
+        // linkHotkey(vditor, aElement, event, input2);
+        if (event.isComposing) {
             return;
         }
-        linkHotkey(vditor, aElement, event, input1);
+        if (
+            event.key === "Escape" &&
+            vditor.hint.element.style.display === "block"
+            ) {
+                vditor.hint.element.style.display = "none";
+                event.preventDefault();
+                return;
+            }
+        vditor.hint.select(event, vditor);
+        focusToElement(event, range);
     };
 
     const input1Wrap = document.createElement("span");
