@@ -128,6 +128,7 @@ export const hotkeyEvent = (vditor: IVditor, editorElement: HTMLElement) => {
             if (matchHotKey(item.hotkey, event)) {
                 item.action()
                 event.preventDefault();
+                event.stopPropagation();
             }
         });
 
