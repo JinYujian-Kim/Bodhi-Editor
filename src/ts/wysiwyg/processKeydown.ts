@@ -63,7 +63,7 @@ export const processKeydown = (vditor: IVditor, event: KeyboardEvent) => {
     !isCtrl(event) && !event.shiftKey && !event.altKey && event.key === "Enter") {
     const wysiwygElement = vditor.wysiwyg.element;
     wysiwygElement.scrollTop = wysiwygElement.scrollHeight - wysiwygElement.clientHeight;
-    console.log('sssss')
+    
 }
     // md 处理
     if (fixMarkdown(event, vditor, pElement, range)) {
@@ -169,7 +169,7 @@ export const processKeydown = (vditor: IVditor, event: KeyboardEvent) => {
         if (range.startOffset === 0 && !isCtrl(event) && !event.shiftKey && !event.altKey && 
             event.key === "Enter") {
             // H1-H6 开头处回车解析问题
-            console.log('hhhhhhh')
+            
             const pTempElement = document.createElement("p");
             // pTempElement.textContent = "\n";
             pTempElement.setAttribute("data-block", "0");

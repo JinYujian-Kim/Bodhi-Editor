@@ -123,7 +123,7 @@ export const toolbarEvent = (vditor: IVditor, actionBtn: Element, event: Event) 
     // 如果是高亮
     if (commandName === "highlight") {
         // bold, italic, strike, highlight
-        console.log('enter')
+        
         useHighlight = false;
         actionBtn.classList.add("vditor-menu--current");
         if (range.toString() === "") {
