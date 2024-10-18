@@ -708,7 +708,7 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
                         return;
                     }
                     vditor.hint.select(event, vditor);
-                    focusToElement(event, range);
+                    // focusToElement(event, range);
                 };
                 language.onkeyup = (event: KeyboardEvent) => {
                     if (
