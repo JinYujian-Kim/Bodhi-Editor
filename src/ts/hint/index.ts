@@ -224,7 +224,7 @@ export class Hint {
         vditor.hint.genHTML(matchingData, currentLineValue, vditor);
     }
     public genHTML(data: IHintData[], key: string, vditor: IVditor) {
-        if (data.length === 0) {
+        if (data.length === 0 || vditor.options.editable === false) {
             this.element.style.display = "none";
             return;
         }

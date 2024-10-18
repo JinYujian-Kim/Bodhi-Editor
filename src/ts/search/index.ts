@@ -178,7 +178,7 @@ export class Search {
      * @param vditor 
      */
     public next(vditor: IVditor) :void {
-        if (!this.isSearching || this.searchResults.length === 0) {
+        if (!this.isSearching || this.searchResults.length === 0 || vditor.options.editable === false) {
             return;
         }
         (this.searchResults[this.pos] as HTMLElement).classList.remove("vditor-search__current");    

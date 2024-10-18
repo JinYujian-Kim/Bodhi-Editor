@@ -52,7 +52,9 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
         if (vditor.options.editable === false) {
             return;
         }
-
+        if (vditor.options.editable === false) {
+            return;
+        }
         removeCurrentToolbar(vditor.toolbar.elements, Constants.EDIT_TOOLBARS);
         enableToolbar(vditor.toolbar.elements, Constants.EDIT_TOOLBARS);
 

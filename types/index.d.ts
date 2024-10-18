@@ -635,6 +635,8 @@ interface BodhiHotkey {
 
 /** @link https://ld246.com/article/1549638745630#options */
 interface IOptions {
+     /** 是否可以编辑 */
+     editable?: boolean;
     /** 选中文字后的悬浮工具框 */
     popoverToolbar?: {
         bold: boolean;
