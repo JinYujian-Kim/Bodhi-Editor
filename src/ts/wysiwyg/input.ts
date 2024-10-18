@@ -20,6 +20,8 @@ export const input = (vditor: IVditor, range: Range, event?: InputEvent) => {
     ['{', '}'], 
     ['《', '》'], 
     ['（', '）'],
+    ['\'', '\''],
+        ['"', '"'],
 ])
 if (!blockElement) {
     // 使用顶级块元素，应使用 innerHTML
