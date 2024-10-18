@@ -739,7 +739,7 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
             if (vditor.wysiwyg.popover.innerHTML !== "") {
                 if (vditor.wysiwyg.popover.innerHTML !== "") {
                     setPopoverPosition(vditor, blockRenderElement);
-                }
+                
                 if (vditor.wysiwyg.newCodeBlock) {
                     (vditor.wysiwyg.popover.firstElementChild.firstElementChild as HTMLInputElement).focus();
                     vditor.wysiwyg.newCodeBlock = false;
