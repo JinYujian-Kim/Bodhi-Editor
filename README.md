@@ -1,1 +1,1 @@
-Bodhi项目中的Editor模块，基于[Vidtor](https://b3log.org/vditor/)实现。
+Editor module in Bodhi project, based on [Vidtor](https://b3log.org/vditor/) implementation.
